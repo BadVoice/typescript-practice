@@ -1,7 +1,7 @@
 import Page from '../../core/templates/page';
 
 class StatisticsPage extends Page {
-    static TextObject: {
+    static TextObject = {
         MainTitle: 'StatisticsPage',
     };
 

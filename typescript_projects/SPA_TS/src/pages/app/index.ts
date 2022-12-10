@@ -1,26 +1,36 @@
 import MainPage from '../main';
 import Page from '../../core/templates/page'
 import SettingsPage from '../settings/index';
+import StatisticsPage from '../statisctics/index';
+
+
+
+export const enum PageIds {
+    MainPage = 'main-page',
+    SettingsPage = 'settings-page',
+    StatisticsPage = 'statistics-page'
+}
 
 class App {
-    private container: HTMLElement; // learn private 
+    private static container: HTMLElement = document.body; // learn private 
     private initPage: MainPage;
-
+    
     static renderNewPage(idPage: string) {
-        document.body.innerHTML = ''
+        // don't use method this. in static
+        App.container.innerHTML = ''
         let page: Page | null = null;
 
-        if (idPage === 'main-page') {
+        if (idPage === PageIds.MainPage) {
             page = new MainPage(idPage)
-        } else if (idPage === 'settings-page') {
+        } else if (idPage === PageIds.SettingsPage) {
             page = new SettingsPage(idPage)
-        } else if (idPage === 'statistics-page') {
-            page = new SettingsPage(idPage)
+        } else if (idPage === PageIds.StatisticsPage) {
+            page = new StatisticsPage(idPage)
         }
 
         if(page) {
             const pageHTML = page.render();
-            document.body.append(pageHTML)
+            App.container.append(pageHTML)
         }
     }
 
@@ -33,7 +43,6 @@ class App {
     }
 
     constructor() {
-        this.container = document.body;
         this.initPage = new MainPage('main-page')
     }
 
