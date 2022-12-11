@@ -2,8 +2,7 @@ import MainPage from '../main';
 import Page from '../../core/templates/page'
 import SettingsPage from '../settings/index';
 import StatisticsPage from '../statisctics/index';
-
-
+import Header from '../../core/components/header';
 
 export const enum PageIds {
     MainPage = 'main-page',
@@ -14,6 +13,7 @@ export const enum PageIds {
 class App {
     private static container: HTMLElement = document.body; // learn private 
     private initPage: MainPage;
+    private header: Header;
     
     static renderNewPage(idPage: string) {
         // don't use method this. in static
@@ -44,10 +44,12 @@ class App {
 
     constructor() {
         this.initPage = new MainPage('main-page')
+        this.header = new Header('tagNameHeader', 'classNameHeader')
     }
 
     run() {
-        App.renderNewPage('statistics-page');
+        App.container.append(this.header.render())
+        App.renderNewPage('main-page');
         this.enableRouteChange()
     }
 }
