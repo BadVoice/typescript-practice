@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "tsc",
+    "test": "jest --watch",
+    "cover": "jset --coverage"
+  },
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "jest": "^29.3.1",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.3.1",
+    "@types/jest": "^29.2.4",
+    "ts-jest": "^29.0.3"
+  }
+}

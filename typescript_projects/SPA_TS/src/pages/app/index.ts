@@ -11,13 +11,17 @@ export const enum PageIds {
 }
 
 class App {
-    private static container: HTMLElement = document.body; // learn private 
+    private static container: HTMLElement = document.body; // learn private | static 
+    private static defaultPageId: string = 'current-page'
     private initPage: MainPage;
     private header: Header;
     
     static renderNewPage(idPage: string) {
         // don't use method this. in static
-        App.container.innerHTML = ''
+        const currentPageHTML = document.querySelector(`#${App.defaultPageId}`)
+        if (currentPageHTML) {
+            currentPageHTML.remove()
+        }
         let page: Page | null = null;
 
         if (idPage === PageIds.MainPage) {
@@ -30,6 +34,7 @@ class App {
 
         if(page) {
             const pageHTML = page.render();
+            pageHTML.id = App.defaultPageId;
             App.container.append(pageHTML)
         }
     }
@@ -44,7 +49,7 @@ class App {
 
     constructor() {
         this.initPage = new MainPage('main-page')
-        this.header = new Header('tagNameHeader', 'classNameHeader')
+        this.header = new Header('tagNameHeader', 'header-container')
     }
 
     run() {
